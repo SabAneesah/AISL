@@ -8,11 +8,11 @@ import {
 
   import { createContext,useState,useEffect } from "react";  
   
-  import Dashboard from "../Pages/Dashboard";
-  import FlashCardPage from "../Pages/FlashCardPage";
-  import ViewFlashcard from "../Pages/ViewFlashcard";
-import ViewPPA from "../Pages/PPAnalysis/ViewPPA";
-import PPA from "../Pages/PPAnalysis/PPA";
+  import Dashboard from "../Pages(FE)/Dashboard";
+  import FlashCardPage from "../Pages(FE)/FlashCardPage";
+  import ViewFlashcard from "../Pages(FE)/ViewFlashcard";
+import ViewPPA from "../Pages(FE)/PPAnalysis/ViewPPA";
+import PPA from "../Pages(FE)/PPAnalysis/PPA";
 
   export const DataContext = createContext();
 

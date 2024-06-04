@@ -4,9 +4,9 @@ import {
   Route,
 } from "react-router-dom";
 
-import Home from "./Pages/Home";
-import Signin from "./Pages/Signin";
-import Register from "./Pages/Register"
+import Home from "./Pages(FE)/Home";
+import Signin from "./Pages(FE)/Signin";
+import Register from "./Pages(FE)/Register"
 import UserRoute from "./routes/UserRoute";
 
 function App() {
