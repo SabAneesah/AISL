@@ -1,6 +1,6 @@
 // SearchAndUpload.js
 import React from 'react';
-import '../../../App.css'; // Assume we have separate CSS for this component
+import './PPA.css'; // Assume we have separate CSS for this component
 
 const SearchAndUpload = () => {
     return (

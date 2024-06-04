@@ -1,6 +1,6 @@
 // SubmissionForm.js
 import React, { useState } from 'react';
-import '../../../App.css'; // Make sure to have a dedicated CSS file for this component
+import './PPA.css'; // Make sure to have a dedicated CSS file for this component
 
 const SubmissionForm = () => {
     const faculties = ['Faculty 1', 'Faculty 2'];

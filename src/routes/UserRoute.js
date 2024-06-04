@@ -11,6 +11,8 @@ import {
   import Dashboard from "../Pages/Dashboard";
   import FlashCardPage from "../Pages/FlashCardPage";
   import ViewFlashcard from "../Pages/ViewFlashcard";
+import ViewPPA from "../Pages/PPAnalysis/ViewPPA";
+import PPA from "../Pages/PPAnalysis/PPA";
 
   export const DataContext = createContext();
 
@@ -61,6 +63,8 @@ import {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/flashcardpage" element={<FlashCardPage />} />
                   <Route path="/viewflashcard" element={<ViewFlashcard />} />
+                  <Route path="/viewpastpaper" element={<ViewPPA />} />
+                  <Route path="/analysepastpaper" element={<PPA />} />
               </Routes>
       </Router>
       {/* </DataContextProvider> */}
