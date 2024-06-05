@@ -8,7 +8,7 @@ import {
 
   import { createContext,useState,useEffect } from "react";  
   
-  import Dashboard from "../Pages/Dashboard";
+  import Dashboard from "../FrontEnd/Dashboard";
   import FlashCardPage from "../Pages/FlashCardPage";
   import ViewFlashcard from "../Pages/ViewFlashcard";
 
