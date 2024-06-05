@@ -1,3 +1,4 @@
+import React from 'react';
 import Navbar from "../Components/NavBar";
 import CardContainer from "../Components/CardContainer";
 import IntoCard from "../Components/IntroCard";

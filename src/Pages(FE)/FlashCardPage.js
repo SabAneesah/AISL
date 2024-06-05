@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext, useState } from "react";
 import FlashCardInput from "../BackEnd/FlashCardInput";
 import FlashCardTile from "../Components/FlashCardTile";
