@@ -7,6 +7,7 @@ import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
 import CollapsibleNavbar from "../Components/Flashcard/CollapsibleNavbar";
 import CreatedBox from "../Components/Flashcard/CreatedBox";
+import React from 'react'
 
 function FlashCardPage() {
   const data = useContext(DataContext);

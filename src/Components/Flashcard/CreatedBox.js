@@ -1,6 +1,7 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckBadgeIcon } from '@heroicons/react/24/outline'
+import React from 'react'
 
 export default function CreatedBox(props) {
   const [open, setOpen] = useState(true)

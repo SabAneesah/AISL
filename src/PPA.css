@@ -1,0 +1,706 @@
+
+.app {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f8;
+    padding: 20px;
+    width: 1500px;
+}
+
+.header {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* search */
+.search-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-dropdown select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.claim-form-container {
+    gap: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 70px;
+}
+.modal-overlay {
+    position: fixed;
+    top: 5%;
+    bottom: 5%;
+    left: 0;
+    padding: 5%;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: none; /* hide by default */
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.open {
+    display: flex; /* show when open */
+}
+.close-icon svg {
+    color: black;
+    fill: #000000;/* Set the fill color to black */
+    cursor: pointer;
+}
+.form-side{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 20px;
+    border-top: 2px solid #000000;
+
+}
+.claim-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.claim-form2 {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-top: 50px;
+    align-items: center;
+
+}
+.form-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(100% - 22px);
+    border-right: 2px solid #000000;
+}
+.form-section-2 {
+    width: calc(100% - 22px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.devb{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row label {
+    margin-left: 20px;
+}
+
+label{
+    font-family: serif;
+    font-size: 20px;
+    margin-bottom: 5px;
+    gap: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 250px; /* Adjusted width to accommodate padding and border */
+    height: 50px; /* Example: Set the height to match the text boxes */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="file"] {
+    width: calc(100% - 22px);
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+button[type="submit"],
+button[type="cancel"] {
+    padding: 5px 10px;
+    width: 150px;
+    background-color: #02072D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    gap: 10px;
+    align-items: center ;
+    margin-left: 20px;
+}
+
+button[type="submit"]:hover,
+button[type="cancel"]:hover {
+    background-color: #97A0F2;
+}n
+
+ p {
+     margin-right: 0;
+ }
+.top{
+    display: flex;
+    background-color: #02072D;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    justify-content: space-between;
+    padding: 10px;
+}
+.sg{
+    margin-right: 10px;
+}
+.logo{
+    display: flex;
+    margin-left: 20px;
+    align-items: center;
+}
+.logo img {
+    width: 300px;
+    height: 100px;
+}
+
+.d{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    margin-right: 20px;
+}
+.h4{
+    font-family: serif;
+    font-size: 35px;
+    color: #FFFFFF;
+}
+.profButton{
+    width: 25px;
+    height: 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.FORM_WRAP{
+    margin: 0;
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.search-bar input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.file-area {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.file-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.file-info p {
+    margin: 0;
+}
+
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* upload */
+.app {
+    font-family: 'Arial', sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.header {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.dropdown {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 500px;
+}
+
+.text-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+}
+
+.file-upload-area {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.file-upload {
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    cursor: pointer;
+    margin-left: 240px;
+}
+
+.file-upload-content {
+    text-align: center;
+}
+
+.submit-button {
+    grid-column: span 2;
+    padding: 10px 20px;
+    border: none;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root {
+    --primaryColor: hsla(182, 96%, 32%, 1);
+    --hoverColor: hsla(181, 75%, 32%, 1);
+    --paleGreen: hsl(96, 75%, 89%);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --greyText: hsl(0, 0%, 75%);
+    --bgColor: hsl(113, 11%, 85%);
+    --inputColor: hsl(330, 12%, 97%);
+    --biggestFontSize: 2.5rem;
+    --h1FontSize: 1.5ren;
+    --h2FontSize: 1.25ren;
+    --h3FontSize: 1ren;
+    --normalFontSize: .938rem;
+    --smallFontSize: .813rem;
+    --smallestFontSize: .75rem;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+html {
+    font-size: 90%;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.icon {
+    font-size: var(--h2FontSize);
+    cursor: pointer;
+}
+
+img, video {
+    height: auto;
+    width: 100%;
+}
+
+.massage {
+    display: none;
+}
+
+.showMessage {
+    display: block;
+    color: var(--whiteColor);
+    padding-left: 10px;
+    background: rgb(255, 0, 0);
+    border-radius: 3px;
+    text-align: center;
+}
+
+.showMessage {
+    display: block;
+    color: var(--whiteColor);
+    background-color: rgb(255, 0, 0);
+    border-radius: 3px;
+    text-align: center;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: var(--greyText);
+}
+
+.btn .icon {
+    margin-left: 0.5rem;
+}
+
+.btn:hover {
+    color: var(--primaryColor);
+    background-color: var(--paleGreen);
+}
+
+
+
+
+.loginPage .container, .registerPage .container {
+    height: 75vh;
+    width: 60%;
+    margin: auto;
+    justify-content: space-between;
+    border-radius: 10px;
+    background: hsl(0, 0%, 91%);
+}
+.loginPage .container .videoDiv, .registerPage .container .videoDiv {
+    position: relative;
+    display: flex;
+    flex-basis: 50%;
+    width: 70%;
+    height: 100%;
+    padding: 0 1.5rem;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.loginPage .container .videoDiv video, .loginPage .container .videoDiv .footerDiv, .registerPage .container .videoDiv video, .registerPage .container .videoDiv .footerDiv {
+    position: absolute;
+}
+.loginPage .container .videoDiv video, .registerPage .container .videoDiv video {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.loginPage .container .videoDiv .textDiv, .registerPage .container .videoDiv .textDiv {
+    position: relative;
+}
+.loginPage .container .videoDiv .textDiv .title, .registerPage .container .videoDiv .textDiv .title {
+    color: var(--whiteColor);
+    font-size: 35px;
+    font-weight: 800;
+}
+.loginPage .container .videoDiv .textDiv p, .registerPage .container .videoDiv .textDiv p {
+    color: var(--whiteColor);
+    padding: 1rem;
+    font-weight: 400;
+}
+.loginPage .container .videoDiv .footerDiv, .registerPage .container .videoDiv .footerDiv {
+    bottom: 10px;
+    padding: 0 1rem;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.248);
+    left: 10px;
+    right: 10px;
+    justify-content: space-between;
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    border-radius: 10px;
+}
+.loginPage .container .videoDiv .footerDiv .text, .registerPage .container .videoDiv .footerDiv .text {
+    color: var(--blackColor);
+}
+.loginPage .container .videoDiv .footerDiv .btn, .registerPage .container .videoDiv .footerDiv .btn {
+    background: var(--whiteColor);
+    color: var(--primaryColor);
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 400;
+    transition: 0.3s ease;
+}
+.loginPage .container .videoDiv .footerDiv .btn:hover, .registerPage .container .videoDiv .footerDiv .btn:hover {
+    background-color: var(--hoverColor);
+    color: var(--blackColor);
+}
+.loginPage .container .formDiv, .registerPage .container .formDiv {
+    flex-basis: 50%;
+    margin: auto;
+    flex-direction: column;
+    gap: 1.5rem;
+    transform: translateY(-1rem);
+}
+.loginPage .container .formDiv .headerDiv, .registerPage .container .formDiv .headerDiv {
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+.loginPage .container .formDiv .headerDiv img, .registerPage .container .formDiv .headerDiv img {
+    width: 90px;
+    padding-bottom: 0.5rem;
+}
+.loginPage .container .formDiv .headerDiv h3, .registerPage .container .formDiv .headerDiv h3 {
+    font-size: 25px;
+    color: var(--blackColor);
+    font-weight: 600;
+}
+.loginPage .container .formDiv .form, .registerPage .container .formDiv .form {
+    gap: 0.5rem;
+}
+.loginPage .container .formDiv .form .inputDiv .icon, .registerPage .container .formDiv .form .inputDiv .icon {
+    color: var(--greyText);
+}
+.loginPage .container .formDiv .form .inputDiv input, .registerPage .container .formDiv .form .inputDiv input {
+    background: none;
+    outline: none;
+    border: none;
+    width: 200px;
+}
+.loginPage .container .formDiv .form .inputDiv label, .registerPage .container .formDiv .form .inputDiv label {
+    color: var(--blackColor);
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0.5rem 0;
+    display: block;
+}
+.loginPage .container .formDiv .form .inputDiv .input, .registerPage .container .formDiv .form .inputDiv .input {
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--inputColor);
+    border-radius: 10px;
+}
+.loginPage .container .formDiv .form .btn, .registerPage .container .formDiv .form .btn {
+    padding: 0.8rem;
+    background: var(--primaryColor);
+    border-radius: 10px;
+    color: var(--whiteColor);
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    font-size: 16px;
+    width: 100%;
+    gap: 0.5rem;
+    transition: 0.3s ease;
+}
+.loginPage .container .formDiv .form .btn .icon, .registerPage .container .formDiv .form .btn .icon {
+    font-size: 25px;
+    transition: 0.3s ease;
+}
+.loginPage .container .formDiv .form .btn:hover, .registerPage .container .formDiv .form .btn:hover {
+    background: var(--hoverColor);
+    color: var(--blackColor);
+}
+.loginPage .container .formDiv .form .btn:hover .icon, .registerPage .container .formDiv .form .btn:hover .icon {
+    color: var(--blackColor);
+    transform: translateX(5px);
+}
+.loginPage .container .formDiv .form .forgotPassword, .registerPage .container .formDiv .form .forgotPassword {
+    font-size: 13px;
+    color: var(--blackColor);
+    opacity: 0.7;
+    text-align: center;
+}
+.loginPage .container .formDiv .form .forgotPassword a, .registerPage .container .formDiv .form .forgotPassword a {
+    text-decoration: underline;
+    cursor: pointer;
+    opacity: 1;
+}
+
+@media screen and (max-width: 500px) {
+    .heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+@media screen and (max-width: 910px) {
+    .heading {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+@media screen and (max-width: 990px) {
+    .heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+@media screen and (max-width: 602px) {
+    .loginPage .container, .registerPage .container {
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    .loginPage .container .videoDiv, .registerPage .container .videoDiv {
+        width: 100%;
+    }
+    .loginPage .container .videoDiv .textDiv .title, .registerPage .container .videoDiv .textDiv .title {
+        font-size: 20px;
+    }
+    .loginPage .container .videoDiv .textDiv p, .registerPage .container .videoDiv .textDiv p {
+        padding: 1rem;
+    }
+    .loginPage .container .videoDiv .footerDiv .text, .registerPage .container .videoDiv .footerDiv .text {
+        font-size: 10px;
+    }
+    .loginPage .container .videoDiv .footerDiv .btn, .registerPage .container .videoDiv .footerDiv .btn {
+        padding: 0.4rem 1.5rem;
+    }
+    .loginPage .container .formDiv, .registerPage .container .formDiv {
+        gap: 1rem;
+        transform: translateY(-0.5rem);
+    }
+    .loginPage .container .formDiv .headerDiv, .registerPage .container .formDiv .headerDiv {
+        padding: 1rem 0;
+    }
+    .loginPage .container .formDiv .headerDiv img, .registerPage .container .formDiv .headerDiv img {
+        width: 40px;
+    }
+    .loginPage .container .formDiv .headerDiv h3, .registerPage .container .formDiv .headerDiv h3 {
+        font-size: 20px;
+    }
+    .loginPage .container .formDiv .form, .registerPage .container .formDiv .form {
+        gap: 0.5rem;
+    }
+    .loginPage .container .formDiv .form .inputDiv input, .registerPage .container .formDiv .form .inputDiv input {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 678px) {
+    .loginPage .container .videoDiv .textDiv .title, .registerPage .container .videoDiv .textDiv .title {
+        font-size: 25px;
+    }
+    .loginPage .container .videoDiv .textDiv p, .registerPage .container .videoDiv .textDiv p {
+        padding: 1rem;
+    }
+    .loginPage .container .videoDiv .footerDiv .text, .registerPage .container .videoDiv .footerDiv .text {
+        font-size: 12px;
+    }
+    .loginPage .container .videoDiv .footerDiv .btn, .registerPage .container .videoDiv .footerDiv .btn {
+        padding: 0.8rem 1.5rem;
+    }
+    .loginPage .container .formDiv .headerDiv, .registerPage .container .formDiv .headerDiv {
+        padding: 1.5rem 0;
+    }
+    .loginPage .container .formDiv .headerDiv h3, .registerPage .container .formDiv .headerDiv h3 {
+        font-size: 20px;
+    }
+    .loginPage .container .formDiv .form .inputDiv input, .registerPage .container .formDiv .form .inputDiv input {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+@media screen and (max-width: 927px) {
+    .loginPage .container, .registerPage .container {
+        width: 85%;
+    }
+}/*# sourceMappingURL=App.css.map */
