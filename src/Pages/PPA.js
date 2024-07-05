@@ -9,6 +9,7 @@ const UploadPPA = () => {
     const faculties = ['Information Technology', 'Engineering' , 'Architecture','Business','Medicine','Graduate Studies'];
     const [faculty, setFaculty] = useState('');
     const [year, setYear] = useState('');
+    const [error, setError] = useState('');
     const [courseName, setCourseName] = useState('');
     const [moduleName, setModuleName] = useState('');
     const formRef = useRef(null);
@@ -28,12 +29,23 @@ const UploadPPA = () => {
         setIsNavOpen(!isNavOpen);
     };
 
+    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!faculty || !year || !courseName || !moduleName ) {
             alert('Please fill in all the fields');
             return;
+        }
+
+        if (year === '') {
+            setError('Year is required.');
+        } else if (!/^[0-9]+$/.test(year)) {
+            setError('Year must be a number without symbols.');
+        } else {
+            setError('');
+            alert('Form submitted successfully!');
         }
 
         const formData = new FormData();  // Create a FormData object to hold the file

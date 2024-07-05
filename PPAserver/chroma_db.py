@@ -1,4 +1,4 @@
-import shutil
+
 import sys
 import os
 import openai
@@ -13,8 +13,15 @@ from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from chromadb.utils import embedding_functions
 
+
+
 # Load environment variables
 load_dotenv()
+
+import google.generativeai as genai
+import PIL.Image
+
+genai.configure(api_key='AIzaSyBkPq2iOCRIdZiEH_ZqGs0jlU1HMJ64mms')
 
 CHROMA_PATH = "chromaPath"
 EMBED_MODEL = "all-MiniLM-L6-v2"
@@ -29,7 +36,7 @@ collection = client.get_collection(name=COLLECTION_NAME, embedding_function=embe
 from openai import OpenAI
 
 client = OpenAI(
-  api_key='sk-proj-tB0YLycpm5MrVQNQg6NiT3BlbkFJ7X1PCYcUsBONqmu1Dh8R',  
+  api_key='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',  
 )
 
 def retrieve_all_embeddings_from_collection():
@@ -41,14 +48,10 @@ def retrieve_all_embeddings_from_collection():
     )
     return results
 
-
 def analyze_content_with_llm(content):
-    response = client.completions.create(
-        model="gpt-3.5-turbo",
-        prompt=f"Analyze the following content and generate a detailed report:\n\n{content}",
-        max_tokens=1500
-    )
-    return response.choices[0].text
+    model = genai.GenerativeModel('models/gemini-pro')
+    result = model.generate_content(content)
+    return result.text
 
 
 def create_pdf(text, output_path):
@@ -61,7 +64,12 @@ def create_pdf(text, output_path):
 
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=12)
+
+     # Load a TTF font that supports Unicode
+    font_path = "E:/Desktop/AILMS/AISL/PPAserver/TTF/DejaVuSans.ttf"  # Replace with the path to your TTF font
+    pdf.add_font("DejaVu", "", font_path, uni=True)
+    pdf.set_font("DejaVu", size=12)
+
     pdf.multi_cell(0, 10, text)
     pdf.output(output_path)
 
@@ -87,10 +95,6 @@ def store_pdf_in_mongodb(pdf_path, module, year, faculty, course):
     collection.insert_one(document)
 
 
-def clear_database():
-    if os.path.exists(CHROMA_PATH):
-        shutil.rmtree(CHROMA_PATH)
-
 
 if __name__ == "__main__":
     # if len(sys.argv) < 5:
@@ -114,11 +118,16 @@ if __name__ == "__main__":
     # Flatten the list of lists
     flattened_documents = [item for sublist in results['documents'] for item in sublist]
 
-    content = " ".join(flattened_documents)  # Assuming documents are stored as plain text strings
+    content = "This is a {moduel_name} past paper. Analyze the following content and generate a detailed report on question patterns, answers and provide insights on frequently asked topics:".join(flattened_documents)  # Assuming documents are stored as plain text strings
     # content = " ".join(results['documents'])
 
+    print("content:",content)
+
     analyzed_text = analyze_content_with_llm(content)
+
+    print ("analysis:",analyzed_text)
+
     output_pdf_path = "analyzedPdf/"
     pdf_path = create_pdf(analyzed_text, output_pdf_path)
     store_pdf_in_mongodb(pdf_path, module_name, year, faculty, course)
-    clear_database()
+    

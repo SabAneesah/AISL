@@ -1,3 +1,4 @@
+import shutil
 import chromadb
 from chromadb.utils import embedding_functions
 from sentence_transformers import SentenceTransformer
@@ -14,6 +15,9 @@ load_dotenv()
 CHROMA_DATA_PATH = "chromaPath/"
 EMBED_MODEL = "all-MiniLM-L6-v2"
 COLLECTION_NAME = "demo_docs6"
+
+if os.path.exists(CHROMA_DATA_PATH):
+        shutil.rmtree(CHROMA_DATA_PATH)
 
 # Initialize ChromaDB
 client = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
@@ -64,7 +68,7 @@ def extract_text(directory_path):
 if __name__ == "__main__":
     pdf_path = "E:/Desktop/AILMS/AISL/PPAserver/pdfUploads"
     documents = extract_text(pdf_path)
-
+    
     collection.add(
         documents=documents,
         ids=[f"id{i}" for i in range(len(documents))],
