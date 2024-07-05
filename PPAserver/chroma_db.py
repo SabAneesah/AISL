@@ -33,12 +33,6 @@ embedding_func = embedding_functions.SentenceTransformerEmbeddingFunction(
 )
 collection = client.get_collection(name=COLLECTION_NAME, embedding_function=embedding_func)
 
-from openai import OpenAI
-
-client = OpenAI(
-  api_key='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',  
-)
-
 def retrieve_all_embeddings_from_collection():
     """Retrieve all embeddings from a ChromaDB collection."""
     results = collection.query(
