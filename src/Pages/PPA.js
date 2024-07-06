@@ -115,9 +115,10 @@ const UploadPPA = () => {
                                 <button onClick={handleFileUpload}></button>
                                 <p>Browse and choose the files you want to upload from your computer</p>
                             </div>
-                        </div>
-                        <button className="submit-button" onClick={handleSubmit}>Upload and Analyse</button>
-                </div>
+                        </div> 
+                        <div></div>
+                        <div className='btn'><button className="button1" onClick={handleSubmit}>Upload and Analyse</button></div>       
+                 </div>
                 </form>
                 <CollapsibleNavbar isNavOpen={isNavOpen} toggleNav={toggleNav}/>
             </div>
