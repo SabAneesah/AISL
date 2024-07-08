@@ -3,7 +3,7 @@ import CardContainer from "../Components/CardContainer";
 import IntoCard from "../Components/IntroCard";
 import FeaturetteContainer from "../Components/FeaturetteContainer";
 import Chatbot from "../Components/Chatbot";
-
+import Footer from "../Components/Footer";
 
 function Home() {
   return (
@@ -13,6 +13,7 @@ function Home() {
     <CardContainer/>
     <FeaturetteContainer/>
     <Chatbot/>
+    <Footer/>
     </div>
   );
 }

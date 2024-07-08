@@ -2,11 +2,12 @@ import { useContext, useState } from "react";
 import FlashCardInput from "../Components/FlashCardInput";
 import FlashCardTile from "../Components/FlashCardTile";
 import Navbar from "../Components/NavBar";
+import Footer from "../Components/Footer";
 import { DataContext } from "../routes/UserRoute";
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
-import CollapsibleNavbar from "../Components/Flashcard/CollapsibleNavbar";
-import CreatedBox from "../Components/Flashcard/CreatedBox";
+import CollapsibleNavbar from "../Components/CollapsibleNavbar";
+import CreatedBox from "../Components/CreatedBox";
 
 function FlashCardPage() {
   const data = useContext(DataContext);
@@ -84,7 +85,8 @@ function FlashCardPage() {
       {/* Collapsible Navbar */}
       <CollapsibleNavbar isNavOpen={isNavOpen} toggleNav={toggleNav}/>
 
-      {isCreated? <CreatedBox/>:""}
+      {isCreated? <CreatedBox message="Flashcards Successfully Created"/>:""}
+      <Footer />
     </div>
   );
 }

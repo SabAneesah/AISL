@@ -10,7 +10,21 @@ import {
   
   import Dashboard from "../Pages/Dashboard";
   import FlashCardPage from "../Pages/FlashCardPage";
-  import ViewFlashcard from "../Pages/ViewFlashcard";
+  import ViewFlashcard from "../FlashCardComponents/ViewFlashcard";
+  import Summary from "../SummaryComponent/Summary";
+  import PPA from "../PPAComponents/PPA";
+  import ViewPPA from "../PPAComponents/ViewPPA";
+  //import ChatbotPage from "../ChatbotComponents/ChatbotPage";
+  //import PopUpChatbot from "../ChatbotComponents/PopUpChatbot";
+  //import ViewPPA from "../Pages/ViewPPA";
+// import UploadPPA from "../Pages/PPA";
+
+// <Route path="/chatbot" element={<ChatbotPage />} />
+//<Route path="/popupchatbot" element={<PopUpChatbot />} />
+//<Route path="/viewPPA" element={<ViewPPA />} />
+//<Route path="/uploadPPA" element={<UploadPPA />} />
+
+
 
   export const DataContext = createContext();
 
@@ -22,35 +36,29 @@ import {
 
     const [data, setData] = useState(null);
 
+//    const userid = localStorage.getItem('userid');
+
     useEffect(() => {
       // Fetch data from the database when "/dashboard" route is accessed
       const fetchData = async () => {
-        try {
-          // Make a GET request to Moodle API to fetch enrolled modules for the specified user
-      const response = await axios.get(
-          `http://localhost/moodle/webservice/rest/server.php`,
-          {
-            params: {
-              wstoken: process.env.REACT_APP_MOODLE_ACCESS_TOKEN,
-              wsfunction: "core_enrol_get_users_courses",
-              moodlewsrestformat: "json",
-              userid: 2,
-            },
-          }
-        );
-          const jsonData = await response.data;
+
+        const url = 'http://localhost:5000/get-courses';
+        try{
+          const response = await axios.post(url,{userid:2});
+          const jsonData = response.data;
           const filteredData = filterIdAndFullName(jsonData);
           setData(filteredData);
-        } catch (error) {
-          console.error('Error fetching data:', error);
+        } catch (err){
+          console.error(err)
         }
       };
-  
-      // Check if current route is "/dashboard" before fetching data
-      if (window.location.pathname === '/flashcardpage') {
+
+      // Check if current route is "/flashcardpage" before fetching data
+      if (window.location.pathname === '/flashcardpage' | window.location.pathname === '/summary' ) {
         fetchData();
       }
     }, []);
+  
 
     return (
       <>
@@ -61,6 +69,12 @@ import {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/flashcardpage" element={<FlashCardPage />} />
                   <Route path="/viewflashcard" element={<ViewFlashcard />} />
+                  <Route path="/summary" element={<Summary />} />
+                  <Route path="/ppa" element={<PPA />} />
+                  <Route path="/viewppa" element={<ViewPPA />} />
+                 
+
+
               </Routes>
       </Router>
       {/* </DataContextProvider> */}

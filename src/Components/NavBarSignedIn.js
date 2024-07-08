@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import PageIcon from "../Assets/Images/logo-with-text.png";
+import React from "react";
+import PageIcon from "../Assets/Images/logo-with-text.png"
+import {useState} from 'react';
 
-const Navbar = (props) => {
-  const [isSignin, setIsSignin] = useState(props.isSignin);
+const NavBarSignedIn = (props) => {
+
+  const [isSignin,setIsSignin] = useState(props.isSignin);
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -10,7 +12,7 @@ const Navbar = (props) => {
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="mr-4">
-              <img src={PageIcon} className="object-contain h-32" alt="Page Icon" />
+              <img src={PageIcon} className="object-contain h-32" />
             </div>
             <a href="/" className="text-white font-bold text-lg">
               Edusphere
@@ -25,22 +27,14 @@ const Navbar = (props) => {
               </li> */}
               <li>
                 <a
-                  href="/signin"
+                  href="/"
                   className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4"
                   style={{ borderRadius: "20px" }}
                 >
-                  Sign in
+                 Home
                 </a>
               </li>
             </ul>
-          </div>
-
-          <div className="md:hidden flex justify-start">
-            {isSignin ? (
-              <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">
-                Sign in
-              </button>
-            ) : null}
           </div>
 
           <div className="md:hidden">
@@ -67,4 +61,4 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+export default NavBarSignedIn;

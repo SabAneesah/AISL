@@ -9,7 +9,7 @@ import { PlayCircleIcon } from '@heroicons/react/24/solid'
 
 const CardContainer = () => {
   return (
-    <div className="flex justify-center mt-48 mb-10">
+    <div className="flex justify-center mt-10 mb-10">
       <div className="flex">
         <div className="w-full mx-8">
           <Card title={"Chatbot"}><ChatBubbleLeftEllipsisIcon className="h-24 w-24 pt-8"/></Card>

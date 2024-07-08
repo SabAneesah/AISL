@@ -5,6 +5,7 @@ import ChatbotImg from "../Assets/Images/chatbot.png";
 import PastPaperImg from "../Assets/Images/copy.png";
 import FlashcardImg from "../Assets/Images/flash-card.png";
 import ExternalImg from "../Assets/Images/youtube.png";
+import EditImg from "../Assets/Images/editImg.png";
 
 const FeaturetteContainer = () => {
   return (
@@ -13,7 +14,7 @@ const FeaturetteContainer = () => {
         <ul>
           <li>
             <a
-              href="/"
+              href="/chatbotpage"
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
             >
               Get Started
@@ -25,7 +26,7 @@ const FeaturetteContainer = () => {
         <ul>
           <li>
             <a
-              href="/"
+              href="/ppa"
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
             >
               Get Started
@@ -50,6 +51,18 @@ const FeaturetteContainer = () => {
           <li>
             <a
               href="/"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
+            >
+              Get Started
+            </a>
+          </li>
+        </ul>
+      </Featurette>
+      <Featurette title={"Summary Creator"} image={EditImg}>
+        <ul>
+          <li>
+            <a
+              href="/summary"
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
             >
               Get Started
