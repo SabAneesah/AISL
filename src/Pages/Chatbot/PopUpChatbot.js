@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+
 function ChatContent() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -15,13 +17,23 @@ function ChatContent() {
         ...prevMessages,
         { text: message, sender: "user" },
       ]);
-      setMessage("");
-      setTimeout(() => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/getSubmitRequest?input_text=${encodeURIComponent(
+            message
+          )}`
+        );
+        const botMessage = response.data;
+
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: "This is a dummy reply", sender: "bot" },
+          { text: botMessage, sender: "bot" },
         ]);
-      }, 500);
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
+
+      setMessage("");
     }
   };
 
@@ -30,19 +42,43 @@ function ChatContent() {
   }, [messages]);
 
   return (
-    <div className="fixed bottom-20 right-5 w-[355px] h-[415px] max-h-full mr-[1.2cm] p-3 pb-4 mt-1 pt-[10] rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl bg-purple-600 text-white bg-opacity-95 shadow-lg border border-black border-opacity-25 z-10 text-sm">
-      <div className="h-[350px] overflow-y-scroll rounded-md bg-transparent">
+    <div className="fixed bottom-20 right-5 w-[365px] h-[435px] max-h-full mr-[1.2cm] p-3 pb-4 mt-1 pt-[10] rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl bg-purple-500 text-white bg-opacity-95 shadow-lg border border-black border-opacity-25 z-10 text-sm">
+      <div className="flex items-center p-2 mb-2 bg-purple-700 rounded-tl-3xl rounded-tr-3xl">
+        <img src="bot_icon.png" alt="Chat Icon" className="w-10 h-10 mr-2" />
+        <span className="text-lg font-bold">Chatbot</span>
+      </div>
+      <div className="h-[300px] overflow-y-scroll rounded-md bg-transparent no-scrollbar">
         {messages.map((msg, index) => (
-          <p
+          <div
             key={index}
-            className={`p-1.5 rounded-md shadow-md w-[160px] my-1 text-center break-words leading-snug font-sans ${
-              msg.sender === "user"
-                ? "bg-indigo-600  text-white ml-auto mr-0.5"
-                : "bg-gray-200 text-black mr-auto ml-0.5"
+            className={`flex my-1 ${
+              msg.sender === "user" ? "justify-end" : "justify-start"
             }`}
           >
-            {msg.text}
-          </p>
+            {msg.sender === "bot" && (
+              <img
+                src="bot_icon.png"
+                alt="Bot Icon"
+                className="w-6 h-6 mr-2"
+              />
+            )}
+            <p
+              className={`p-1.5 rounded-lg shadow-md w-[160px] text-center break-words leading-snug font-sans ${
+                msg.sender === "user"
+                  ? "bg-indigo-600 text-white"
+                  : "bg-gray-200 text-black"
+              }`}
+            >
+              {msg.text}
+            </p>
+            {msg.sender === "user" && (
+              <img
+                src="user.png"
+                alt="User Icon"
+                className="w-6 h-6 ml-2"
+              />
+            )}
+          </div>
         ))}
         <div ref={messagesEndRef} />
       </div>

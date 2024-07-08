@@ -47,7 +47,7 @@ exports.checkUser = async (req, res) => {
 
 exports.insertFlashcards = async(req,res)=>{
 
-  const flashcardContent = req.body;
+  const flashcardContent = req.body; 
   const {userid} = flashcardContent;
 
   const collName = `flashcards_${userid}`;

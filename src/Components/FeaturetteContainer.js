@@ -1,10 +1,11 @@
 import React from "react";
 import Featurette from "./Featurette"; // Assuming you have the Featurette component
-
+import { Link } from "react-router-dom";
 import ChatbotImg from "../Assets/Images/chatbot.png";
 import PastPaperImg from "../Assets/Images/copy.png";
 import FlashcardImg from "../Assets/Images/flash-card.png";
 import ExternalImg from "../Assets/Images/youtube.png";
+
 
 const FeaturetteContainer = () => {
   return (
@@ -12,12 +13,12 @@ const FeaturetteContainer = () => {
       <Featurette title={"Chatbot"} image={ChatbotImg}>
         <ul>
           <li>
-            <a
-              href="/"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
+            <Link
+              to="/GetStart"
+              className="px-6 py-2 font-bold text-white bg-purple-600 rounded-lg hover:bg-purple-700"
             >
               Get Started
-            </a>
+            </Link>
           </li>
         </ul>
       </Featurette>
@@ -26,7 +27,7 @@ const FeaturetteContainer = () => {
           <li>
             <a
               href="/"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
+              className="px-6 py-2 font-bold text-white bg-purple-600 rounded-lg hover:bg-purple-700"
             >
               Get Started
             </a>
@@ -38,7 +39,7 @@ const FeaturetteContainer = () => {
           <li>
             <a
               href="/flashcardpage"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
+              className="px-6 py-2 font-bold text-white bg-purple-600 rounded-lg hover:bg-purple-700"
             >
               Get Started
             </a>
@@ -50,7 +51,7 @@ const FeaturetteContainer = () => {
           <li>
             <a
               href="/"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
+              className="px-6 py-2 font-bold text-white bg-purple-600 rounded-lg hover:bg-purple-700"
             >
               Get Started
             </a>

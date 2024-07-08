@@ -6,7 +6,19 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('tailwindcss'),
-  require('autoprefixer'),],
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar::-webkit-scrollbar': {
+          'display': 'none',
+        },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      }, ['responsive'])
+    },
+  ],
 }
-
