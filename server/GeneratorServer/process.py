@@ -1,5 +1,4 @@
 
-
 from pdf2image import convert_from_path
 import pytesseract as tess
 from PIL import Image, ImageEnhance, ImageFilter
@@ -15,6 +14,7 @@ from nltk.tokenize import word_tokenize
 from heapq import nlargest
 import io
 import os
+import ssl
 
 # Ensure NLTK data is downloaded
 # nltk.download('punkt')
@@ -34,8 +34,8 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 # Convert PDF to images
-#pdf_path = sys.argv[1]
-pdf_path = "INFOR.pdf"
+pdf_path = sys.argv[1]
+#pdf_path = "INFOR.pdf"
 poppler_path = r'F:\Release-24.02.0-0\poppler-24.02.0\Library\bin'
 images = convert_from_path(pdf_path, 500, poppler_path=poppler_path)
 
@@ -46,7 +46,7 @@ for i, image in enumerate(images):
     image.save(img_byte_arr, format='JPEG')
     img_byte_arr = img_byte_arr.getvalue()
     fs.put(img_byte_arr, filename=image_name)
-    print(f"Stored {image_name} in MongoDB.")
+    #print(f"Stored {image_name} in MongoDB.")
 
 # Preprocess image to improve OCR accuracy
 def preprocess_image(image):
@@ -67,7 +67,7 @@ def extract_text_from_images():
             processed_img = preprocess_image(img)
             # Run OCR with debugging options
             page_text = tess.image_to_string(processed_img, config='--psm 6')
-            print(f"Text from {image_name}:\n{page_text}\n")
+            # print(f"Text from {image_name}:\n{page_text}\n")
             text += page_text + " "
         except Exception as e:
             print(f"Error processing {image_name}: {e}")
@@ -105,4 +105,4 @@ else:
 
     # Generate summary of the extracted text
     summary = summarize_text(text)
-    print(f"Summary:\n{summary}")
+    print(f"\n{summary}")

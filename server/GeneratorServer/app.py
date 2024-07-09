@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 import tempfile
 import subprocess
 import os
+import PyPDF2
 
 app = FastAPI()
 
@@ -19,8 +20,31 @@ async def upload_pdf(file: UploadFile = File(...)):
             tmp_pdf.write(contents)
             tmp_pdf_path = tmp_pdf.name
             print(tmp_pdf_path)
+
+        def is_valid_pdf(file_path):
+            try:
+                with open(file_path, 'rb') as file:
+                    reader = PyPDF2.PdfReader(file)
+                    if len(reader.pages) > 0:
+                        return True
+            except PyPDF2.errors.PdfReadError:
+                return False
+            except Exception as e:
+                print(f"An error occurred: {e}")
+                return False
+            return False
+
+        # Usage
+        file_path = tmp_pdf_path 
+        if is_valid_pdf(file_path):
+            print("The file is a valid PDF.")
+        else:
+            print("Invalid")
+
         # Call the process.py script with the path to the temporary PDF file
         result = subprocess.run(["python", "process.py", tmp_pdf_path], capture_output=True, text=True)
+
+        print(result.stdout)
 
         # Check if the script was executed successfully
         if result.returncode == 0:

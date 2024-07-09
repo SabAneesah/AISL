@@ -122,67 +122,80 @@ app.post("/get-courses", async (req, res) => {
 
 app.post("/handle-summary", async (req, res) => {
   const {fileurl} = req.body;
-  const outputLocationPath = path.resolve(__dirname, 'temp.pdf');
-  const targetUrl = 'http://localhost:8000/upload-pdf';
+  const summaryoutput = await query.checkSummary(fileurl)
 
-  try {
-    // Download the PDF from Moodle
-    const writer = fs.createWriteStream(outputLocationPath);
-    const response = await axios({
-      url: fileurl,
-      method: 'GET',
-      responseType: 'stream',
-      headers: {
-        // Add authentication headers if required by Moodle
-        'Authorization': `Bearer ${process.env.MOODLE_ACCESS_TOKEN}`
+  if(summaryoutput[0]){
+    res.send({
+      message: 'PDF processed and uploaded successfully',
+      uploadResponse: summaryoutput[1],
+    });
+  }else{
+    const outputLocationPath = path.resolve(__dirname, 'temp.pdf');
+    const targetUrl = 'http://localhost:8000/upload-pdf';
+  
+    try {
+      // Download the PDF from Moodle
+      const writer = fs.createWriteStream(outputLocationPath);
+      const response = await axios({
+        url: fileurl,
+        method: 'GET',
+        responseType: 'stream',
+        params: {
+          // Add authentication headers if required by Moodle
+          token: `${process.env.MOODLE_ACCESS_TOKEN}`
+        }
+      });
+  
+      response.data.pipe(writer);
+  
+      writer.on('finish', async () => {
+        console.log('PDF downloaded successfully.');
+  
+      // Prepare the file for upload
+      const form = new FormData();
+      form.append('file', fs.createReadStream(outputLocationPath), {
+        filename: 'ProcessingFile.pdf', // Specify the filename if needed
+        contentType: 'application/pdf', // Specify the content type explicitly
+      });
+  
+      try {
+        // Upload the PDF file to FastAPI server
+        const uploadResponse = await axios.post(targetUrl, form, {
+          headers: {
+            ...form.getHeaders(),
+          },
+        });
+        //If file has summary, dictionary created 
+        const summary={fileurl:fileurl, summary:uploadResponse.data.output}
+        query.addSummary(summary);
+  
+        console.log('PDF uploaded successfully.');
+        console.log(uploadResponse);
+        // Clean up the temporary file
+        fs.unlinkSync(outputLocationPath);
+  
+        // Send a response back to the client
+        res.send({
+          message: 'PDF processed and uploaded successfully',
+          uploadResponse: uploadResponse.data.output,
+        });
+      } catch (uploadError) {
+        console.error('Error uploading PDF:', uploadError);
+        fs.unlinkSync(outputLocationPath); // Clean up even if upload fails
+        res.status(500).send('Error uploading PDF');
       }
     });
-
-    response.data.pipe(writer);
-
-    writer.on('finish', async () => {
-      console.log('PDF downloaded successfully.');
-
-    // Prepare the file for upload
-    const form = new FormData();
-    form.append('file', fs.createReadStream(outputLocationPath), {
-      filename: 'ProcessingFile.pdf', // Specify the filename if needed
-      contentType: 'application/pdf', // Specify the content type explicitly
+  
+    writer.on('error', (error) => {
+      console.error('Error writing file:', error);
+      res.status(500).send('Error downloading PDF');
     });
-
-    try {
-      // Upload the PDF file to FastAPI server
-      const uploadResponse = await axios.post(targetUrl, form, {
-        headers: {
-          ...form.getHeaders(),
-        },
-      });
-
-      console.log('PDF uploaded successfully.');
-
-      // Clean up the temporary file
-      fs.unlinkSync(outputLocationPath);
-
-      // Send a response back to the client
-      res.send({
-        message: 'PDF processed and uploaded successfully',
-        uploadResponse: uploadResponse.data,
-      });
-    } catch (uploadError) {
-      console.error('Error uploading PDF:', uploadError);
-      fs.unlinkSync(outputLocationPath); // Clean up even if upload fails
-      res.status(500).send('Error uploading PDF');
+    } catch (error) {
+      console.error('Error fetching PDF:', error);
+      res.status(500).send('Error fetching PDF');
     }
-  });
+  }
 
-  writer.on('error', (error) => {
-    console.error('Error writing file:', error);
-    res.status(500).send('Error downloading PDF');
-  });
-} catch (error) {
-  console.error('Error fetching PDF:', error);
-  res.status(500).send('Error fetching PDF');
-}
 
 });
 

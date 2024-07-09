@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri = `mongodb+srv://chamathj11:${process.env.MY_MONGODB_ACCESS_KEY}@cluster0.xbnqaje.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://aneesha13sabar:KBpKXvNWEvLevaF8@cluster0.qhunrvl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const auth = require("../auth/auth");
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -46,6 +46,47 @@ exports.checkUser = async (req, res) => {
     res.status(500);
   }
 };
+
+exports.checkSummary = async (fileurl) => {
+  const db = client.db("study_support");
+  const coll = db.collection("summaries");
+  const query = { fileurl: fileurl};
+
+  try {
+    const document = await coll.findOne(query);
+
+    if (document) {
+      const summary = document.summary;
+      return [true,summary]
+    }else{
+      return [false,""];
+    }
+
+  } catch (err) {
+    console.error(err);
+    res.status(500);
+  }
+};
+
+exports.addSummary = async(summary)=>{
+
+
+  const db = client.db("study_support");
+  const coll = db.collection("summaries");
+
+  try {
+    await coll.insertOne(summary,(err,res)=>{
+      if (err) throw err;
+      console.log("Summary Added");
+    })
+
+  } catch (err) {
+    console.error(err);
+    res.send({success:false});
+    res.status(500);
+  }
+
+}
 
 exports.addUser = async(req,res)=>{
 
