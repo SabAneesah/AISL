@@ -8,6 +8,8 @@ import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
 import CollapsibleNavbar from "../Components/CollapsibleNavbar";
 import CreatedBox from "../Components/CreatedBox";
+import NavBarSignedIn from "../Components/NavBarSignedIn";
+//import PopUpChatbot from "../ChatbotComponents/PopUpChatbot";
 
 function FlashCardPage() {
   const data = useContext(DataContext);
@@ -47,7 +49,7 @@ function FlashCardPage() {
 
   return (
     <div className="relative">
-      <Navbar />
+      <NavBarSignedIn />
       <FlashCardInput items={data} flashcards={flashcards} isCreated={setIsCreated} />
 
       <div className={`transition-opacity duration-300 ${isNavOpen ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>

@@ -4,6 +4,7 @@ import Footer from "../Components/Footer";
 import Tile from "./Tile";
 import axios from "axios";
 import FlashcardViewer from "../Components/FlashcardViewer";
+import NavBarSignedIn from "../Components/NavBarSignedIn";
 
 const ViewFlashcard = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -41,10 +42,12 @@ const ViewFlashcard = () => {
   }, []);
 
   return (
+    <>
+    <NavBarSignedIn />
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow">
         <div className={`transition-opacity duration-300 ${isNavOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-8 mx-12">
             {flashcardInfo.map((flashcard, index) => (
               <Tile
                 key={index}
@@ -63,6 +66,7 @@ const ViewFlashcard = () => {
       </div>
       <Footer />
     </div>
+    </>
   );
 };
 
