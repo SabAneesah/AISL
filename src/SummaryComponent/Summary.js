@@ -3,6 +3,7 @@ import Navbar from "../Components/NavBar";
 import Footer from '../Components/Footer';
 import { DataContext } from "../routes/UserRoute";
 import axios from "axios";
+import NavBarSignedIn from '../Components/NavBarSignedIn';
 
 const Summary = () => {
   const data = useContext(DataContext);
@@ -16,6 +17,7 @@ const Summary = () => {
   const [courseDocs, setCourseDocs] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleModuleSelect = (item) => {
     setSelectedModule(item.fullname);
@@ -35,6 +37,9 @@ const Summary = () => {
     console.log(selectedDoc);
     const postData = { fileurl: selectedDoc }
 
+    setIsLoading(true); // Start loading
+
+
     try {
       const response = await axios.post(url, postData);
       console.log(response);
@@ -44,6 +49,8 @@ const Summary = () => {
       console.error(error);
       setModalContent('An error occurred while processing the PDF.');
       setModalOpen(true);
+    }finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -71,7 +78,7 @@ const Summary = () => {
 
   return (
     <>
-      <Navbar />
+      <NavBarSignedIn />
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6 text-center">Select Module and Lecture Slides</h2>
@@ -134,6 +141,11 @@ const Summary = () => {
               </button>
             </div>
           </form>
+          {isLoading && (
+            <div className="flex justify-center mt-4">
+              <div className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-blue-500"></div>
+            </div>
+          )}
         </div>
       </div>
       {modalOpen && (
